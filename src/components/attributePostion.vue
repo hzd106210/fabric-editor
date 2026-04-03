@@ -121,22 +121,11 @@ const changeCommon = (key, value) => {
     // 3D旋转角度适配（使用skewY属性模拟伪3D效果）
     if (key === 'angleY') {
       activeObject.set(key, value);
-      // 为文字元素添加伪3D旋转效果
-      if (
-        activeObject.type === 'text' ||
-        activeObject.type === 'i-text' ||
-        activeObject.type === 'textbox'
-      ) {
-        // 使用skewY属性模拟伪3D旋转效果
-        // 将角度转换为倾斜值
-        const skewY = Math.sin((value * Math.PI) / 180) * 30; // 30是倾斜系数，可以根据需要调整
-        activeObject.set('skewY', skewY);
-      } else {
-        // 对于非文字元素，重置倾斜效果
-        if (activeObject.get('skewY')) {
-          activeObject.set('skewY', 0);
-        }
-      }
+      // 为所有元素添加伪3D旋转效果
+      // 使用skewY属性模拟伪3D旋转效果
+      // 将角度转换为倾斜值
+      const skewY = Math.sin((value * Math.PI) / 180) * 30; // 30是倾斜系数，可以根据需要调整
+      activeObject.set('skewY', skewY);
       canvasEditor.canvas.renderAll();
       return;
     }
