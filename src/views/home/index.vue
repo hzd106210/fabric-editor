@@ -157,7 +157,10 @@ onMounted(async () => {
     const arrayBuffer = await response.arrayBuffer();
     const psdFile = Psd.parse(arrayBuffer);
     const json = await psdToJson(psdFile);
-    canvasEditor.loadJSON(json);
+    canvasEditor.loadJSON(json, () => {
+      // 加载完成后，锁定所有图层
+      lockAllLayers();
+    });
   } catch (error) {
     console.error('Error loading default PSD file:', error);
     // 如果加载失败，尝试使用相对路径
@@ -169,12 +172,39 @@ onMounted(async () => {
       const arrayBuffer = await response.arrayBuffer();
       const psdFile = Psd.parse(arrayBuffer);
       const json = await psdToJson(psdFile);
-      canvasEditor.loadJSON(json);
+      canvasEditor.loadJSON(json, () => {
+        // 加载完成后，锁定所有图层
+        lockAllLayers();
+      });
     } catch (error2) {
       console.error('Error loading default PSD file with relative path:', error2);
     }
   }
 });
+
+// 锁定所有图层
+const lockAllLayers = () => {
+  const canvas = canvasEditor.canvas;
+  if (!canvas) return;
+
+  // 遍历所有对象
+  canvas.getObjects().forEach((object) => {
+    // 锁定移动
+    object.set('lockMovementX', true);
+    object.set('lockMovementY', true);
+    // 锁定旋转
+    object.set('lockRotation', true);
+    // 锁定缩放
+    object.set('lockScalingX', true);
+    object.set('lockScalingY', true);
+    // 锁定倾斜
+    object.set('lockSkewingX', true);
+    object.set('lockSkewingY', true);
+  });
+
+  // 重新渲染画布
+  canvas.renderAll();
+};
 
 onUnmounted(() => canvasEditor.destory());
 const rulerSwitch = (val) => {
