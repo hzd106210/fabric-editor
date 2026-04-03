@@ -35,6 +35,13 @@
             @on-input="(value) => changeCommon('angle', value)"
           ></Slider>
         </FormItem>
+        <FormItem label="3D旋转(Y轴)">
+          <Slider
+            v-model="baseAttr.angleY"
+            :max="360"
+            @on-input="(value) => changeCommon('angleY', value)"
+          ></Slider>
+        </FormItem>
         <FormItem :label="$t('attributes.opacity')">
           <Slider
             v-model="baseAttr.opacity"
@@ -74,6 +81,7 @@ const { isMatchType, canvasEditor, isOne } = useSelect(baseType);
 const baseAttr = reactive({
   opacity: 0,
   angle: 0,
+  angleY: 0,
   left: 0,
   top: 0,
   rx: 0,
@@ -90,6 +98,7 @@ const getObjectAttr = (e) => {
     baseAttr.left = activeObject.get('left');
     baseAttr.top = activeObject.get('top');
     baseAttr.angle = activeObject.get('angle') || 0;
+    baseAttr.angleY = activeObject.get('angleY') || 0;
   }
 };
 
@@ -106,6 +115,28 @@ const changeCommon = (key, value) => {
     // 旋转角度适配
     if (key === 'angle') {
       activeObject.rotate(value);
+      canvasEditor.canvas.renderAll();
+      return;
+    }
+    // 3D旋转角度适配（使用skewY属性模拟伪3D效果）
+    if (key === 'angleY') {
+      activeObject.set(key, value);
+      // 为文字元素添加伪3D旋转效果
+      if (
+        activeObject.type === 'text' ||
+        activeObject.type === 'i-text' ||
+        activeObject.type === 'textbox'
+      ) {
+        // 使用skewY属性模拟伪3D旋转效果
+        // 将角度转换为倾斜值
+        const skewY = Math.sin((value * Math.PI) / 180) * 30; // 30是倾斜系数，可以根据需要调整
+        activeObject.set('skewY', skewY);
+      } else {
+        // 对于非文字元素，重置倾斜效果
+        if (activeObject.get('skewY')) {
+          activeObject.set('skewY', 0);
+        }
+      }
       canvasEditor.canvas.renderAll();
       return;
     }
