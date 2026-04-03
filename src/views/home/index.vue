@@ -37,6 +37,8 @@ import zoom from '@/components/zoom.vue';
 import dragMode from '@/components/dragMode.vue';
 // 功能组件
 import { fabric } from 'fabric';
+import Psd from '@webtoon/psd';
+import psdToJson from '@kuaitu/core/utils/psd';
 
 import Editor, {
   IEditor,
@@ -86,7 +88,7 @@ const state = reactive({
   ruler: true,
 });
 
-onMounted(() => {
+onMounted(async () => {
   // 初始化fabric
   const canvas = new fabric.Canvas('canvas', {
     fireRightClick: true, // 启用右键，button的数字为3
@@ -141,6 +143,36 @@ onMounted(() => {
   // 默认打开标尺
   if (state.ruler) {
     canvasEditor.rulerEnable();
+  }
+
+  // 默认加载PSD文件
+  try {
+    // 由于PSD文件位于packages目录中，我们需要使用正确的路径
+    // 在开发环境中，我们可以直接从文件系统读取
+    // 在生产环境中，我们需要确保文件被正确打包
+    const response = await fetch('/packages/core/assets/psd/template.psd');
+    if (!response.ok) {
+      throw new Error('Failed to load PSD file');
+    }
+    const arrayBuffer = await response.arrayBuffer();
+    const psdFile = Psd.parse(arrayBuffer);
+    const json = await psdToJson(psdFile);
+    canvasEditor.loadJSON(json);
+  } catch (error) {
+    console.error('Error loading default PSD file:', error);
+    // 如果加载失败，尝试使用相对路径
+    try {
+      const response = await fetch('../../packages/core/assets/psd/template.psd');
+      if (!response.ok) {
+        throw new Error('Failed to load PSD file with relative path');
+      }
+      const arrayBuffer = await response.arrayBuffer();
+      const psdFile = Psd.parse(arrayBuffer);
+      const json = await psdToJson(psdFile);
+      canvasEditor.loadJSON(json);
+    } catch (error2) {
+      console.error('Error loading default PSD file with relative path:', error2);
+    }
   }
 });
 
