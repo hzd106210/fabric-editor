@@ -8,6 +8,10 @@
       <span @click="() => addTextBox()" :draggable="true" @dragend="addTextBox">
         <textBoxIcon width="26" height="26"></textBoxIcon>
       </span>
+      <span @click="() => addSpecialText()" :draggable="true" @dragend="addSpecialText">
+        <Icon type="ios-pulse" size="24" />
+        <!-- <textIcon width="26" height="26"></textIcon> -->
+      </span>
       <span @click="() => addRect()" :draggable="true" @dragend="addRect">
         <rectIcon width="26" height="26"></rectIcon>
       </span>
@@ -122,6 +126,27 @@ const addText = (event) => {
   });
 
   canvasEditor.addBaseType(text, { center: true, event });
+};
+
+const addSpecialText = (event) => {
+  cancelDraw();
+  const text = new fabric.IText('Text', {
+    ...defaultPosition,
+    fontSize: 120,
+    fill: '#FFFFFF',
+    fontWeight: 'bold',
+    width: 484.91,
+    left: 449.61,
+    top: 1000,
+  });
+
+  canvasEditor.addBaseType(text, { center: false, event });
+
+  // 设置3D旋转效果
+  text.set('angleY', 36);
+  const skewY = Math.sin((36 * Math.PI) / 180) * 30;
+  text.set('skewY', skewY);
+  canvasEditor.canvas.renderAll();
 };
 
 const addTextBox = (event) => {
