@@ -145,39 +145,37 @@ onMounted(async () => {
     canvasEditor.rulerEnable();
   }
 
-  // 默认加载PSD文件
+  // 默认加载JSON文件
   try {
-    // 由于PSD文件位于packages目录中，我们需要使用正确的路径
-    // 在开发环境中，我们可以直接从文件系统读取
-    // 在生产环境中，我们需要确保文件被正确打包
-    const response = await fetch('/packages/core/assets/psd/template.psd');
+    // 加载指定的JSON文件
+    const response = await fetch('/src/assets/box-template/box-template.json');
     if (!response.ok) {
-      throw new Error('Failed to load PSD file');
+      throw new Error('Failed to load JSON file');
     }
-    const arrayBuffer = await response.arrayBuffer();
-    const psdFile = Psd.parse(arrayBuffer);
-    const json = await psdToJson(psdFile);
+    const json = await response.json();
     canvasEditor.loadJSON(json, () => {
       // 加载完成后，锁定所有图层
       lockAllLayers();
+      // 让画布失去焦点
+      canvas.getElement().blur();
     });
   } catch (error) {
-    console.error('Error loading default PSD file:', error);
+    console.error('Error loading default JSON file:', error);
     // 如果加载失败，尝试使用相对路径
     try {
-      const response = await fetch('../../packages/core/assets/psd/template.psd');
+      const response = await fetch('./src/assets/box-template/box-template.json');
       if (!response.ok) {
-        throw new Error('Failed to load PSD file with relative path');
+        throw new Error('Failed to load JSON file with relative path');
       }
-      const arrayBuffer = await response.arrayBuffer();
-      const psdFile = Psd.parse(arrayBuffer);
-      const json = await psdToJson(psdFile);
+      const json = await response.json();
       canvasEditor.loadJSON(json, () => {
         // 加载完成后，锁定所有图层
         lockAllLayers();
+        // 让画布失去焦点
+        canvas.getElement().blur();
       });
     } catch (error2) {
-      console.error('Error loading default PSD file with relative path:', error2);
+      console.error('Error loading default JSON file with relative path:', error2);
     }
   }
 });

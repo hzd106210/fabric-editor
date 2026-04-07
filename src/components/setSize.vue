@@ -36,10 +36,12 @@
       <h4>插入盒子图片</h4>
     </Divider>
     <div class="replace-image-group">
-      <Button @click="replaceLeftFoldImage" type="primary" long>左折页图片</Button>
-      <Button @click="replaceRightFoldImage" type="primary" long>右折页图片</Button>
-      <Button @click="replaceLeftBoxImage" type="primary" long>左盒面图片</Button>
-      <Button @click="replaceRightBoxImage" type="primary" long>右盒面图片</Button>
+      <ReplaceLeftFoldImage />
+      <ReplaceRightFoldImage />
+      <ReplaceLeftBoxImage />
+      <ReplaceRightBoxImage />
+      <!-- <Button @click="replaceLeftBoxImage" type="primary" long>左盒面图片</Button> -->
+      <!-- <Button @click="replaceRightBoxImage" type="primary" long>右盒面图片</Button> -->
     </div>
   </div>
 </template>
@@ -51,6 +53,10 @@ import useSelect from '@/hooks/select';
 import modalSzie from '@/components/common/modalSzie';
 import { Utils } from '@kuaitu/core';
 import { fabric } from 'fabric';
+import ReplaceRightFoldImage from './replaceRightFoldImage.vue';
+import ReplaceLeftFoldImage from './replaceLeftFoldImage.vue';
+import ReplaceLeftBoxImage from './replaceLeftBoxImage.vue';
+import ReplaceRightBoxImage from './replaceRightBoxImage.vue';
 
 const { getImgStr, selectFiles, insertImgFile } = Utils;
 const { isSelect, canvasEditor } = useSelect();

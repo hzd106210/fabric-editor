@@ -1,7 +1,7 @@
 <template>
   <Header>
     <div class="left">
-      <logo></logo>
+      <!-- <logo></logo> -->
       <Divider type="vertical" />
 
       <!-- 导入 -->
@@ -9,7 +9,7 @@
       <Divider type="vertical" />
       <import-file></import-file>
       <Divider type="vertical" />
-      <Button type="text" to="/template" target="_blank">全部模板</Button>
+      <!-- <Button type="text" to="/template" target="_blank">全部模板</Button> -->
       <Divider type="vertical" />
 
       <myTemplName></myTemplName>
@@ -22,36 +22,36 @@
     </div>
 
     <div class="right">
-      <a href="https://pro.kuaitu.cc/" target="_blank" alt="商业版">
+      <!-- <a href="https://pro.kuaitu.cc/" target="_blank" alt="商业版">
         <img width="15" :src="proIcon" alt="vue-fbric-editor" />
-      </a>
+      </a> -->
       <!-- 管理员模式 -->
-      <admin />
+      <!-- <admin /> -->
       <!-- 预览 -->
       <previewCurrent />
-      <waterMark />
+      <!-- <waterMark /> -->
       <save></save>
-      <login></login>
+      <!-- <login></login> -->
       <lang></lang>
     </div>
   </Header>
 </template>
 
 <script name="Top" setup lang="ts">
-import proIcon from '@/assets/icon/proIcon.png';
+// import proIcon from '@/assets/icon/proIcon.png';
 // 导入元素
-import importJson from '@/components/importJSON.vue';
 import importFile from '@/components/importFile.vue';
+import importJson from '@/components/importJSON.vue';
 
 // 顶部组件
-import logo from '@/components/logo.vue';
+// import logo from '@/components/logo.vue';
+import lang from '@/components/lang.vue';
 import myTemplName from '@/components/myTemplName.vue';
 import previewCurrent from '@/components/previewCurrent';
 import save from '@/components/save.vue';
-import lang from '@/components/lang.vue';
-import waterMark from '@/components/waterMark.vue';
-import login from '@/components/login';
-import admin from '@/components/admin';
+// import waterMark from '@/components/waterMark.vue';
+// import login from '@/components/login';
+// import admin from '@/components/admin';
 import history from '@/components/history.vue';
 
 const props = defineProps(['ruler']);

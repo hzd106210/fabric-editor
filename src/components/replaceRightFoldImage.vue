@@ -1,7 +1,7 @@
 <template>
   <div class="attr-item-box">
     <div class="bg-item">
-      <Button @click="replaceRightFoldImage" type="primary" long>替换右折页图片</Button>
+      <Button @click="replaceRightFoldImage" type="primary" long>右折页图片</Button>
     </div>
   </div>
 </template>
@@ -25,11 +25,11 @@ const replaceRightFoldImage = async () => {
 
     // 创建图片对象时设置所有属性
     const image = new fabric.Image(imgEl, {
-      left: 1589.41,
-      top: 908.4,
+      left: 1591.1,
+      top: 904.84,
       width: 574,
       height: 290,
-      angle: 150,
+      angle: 149,
       originX: 'left',
       originY: 'top',
     });

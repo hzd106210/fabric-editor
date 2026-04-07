@@ -1,7 +1,7 @@
 <template>
   <div class="attr-item-box">
     <div class="bg-item">
-      <Button @click="replaceLeftFoldImage" type="primary" long>替换左折页图片</Button>
+      <Button @click="replaceLeftFoldImage" type="primary" long>左折页图片</Button>
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="attr-item-box">
     <div class="bg-item">
-      <Button @click="replaceRightBoxImage" type="primary" long>替换右盒面图片</Button>
+      <Button @click="replaceRightBoxImage" type="primary" long>右盒面图片</Button>
     </div>
   </div>
 </template>
@@ -25,10 +25,10 @@ const replaceRightBoxImage = async () => {
 
     // 创建图片对象时设置所有属性
     const image = new fabric.Image(imgEl, {
-      left: 908.44,
-      top: 662,
+      left: 896,
+      top: 654.76,
       width: 540,
-      height: 750,
+      height: 775,
       angle: 0,
       originX: 'left',
       originY: 'top',
@@ -48,7 +48,6 @@ const replaceRightBoxImage = async () => {
     imgEl.remove();
   } catch (error) {
     console.error('替换右盒面图片失败:', error);
-    alert('替换右盒面图片失败，请重试');
   }
 };
 </script>
