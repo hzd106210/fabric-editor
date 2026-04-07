@@ -46,8 +46,6 @@ const replaceRightBoxImage = async () => {
     canvasEditor.canvas.renderAll();
 
     imgEl.remove();
-
-    alert('右盒面图片替换成功');
   } catch (error) {
     console.error('替换右盒面图片失败:', error);
     alert('替换右盒面图片失败，请重试');

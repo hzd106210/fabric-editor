@@ -46,11 +46,8 @@ const replaceLeftFoldImage = async () => {
     canvasEditor.canvas.renderAll();
 
     imgEl.remove();
-
-    alert('左折页图片替换成功');
   } catch (error) {
     console.error('替换左折页图片失败:', error);
-    alert('替换左折页图片失败，请重试');
   }
 };
 </script>

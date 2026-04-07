@@ -76,6 +76,12 @@
         <barCodeIcon></barCodeIcon>
       </span>
     </div>
+    <Divider plain orientation="left">盒子logo</Divider>
+    <div class="tool-box">
+      <span @click="addBoxLogo">
+        <img src="/src/assets/icon/box-logo.png" class="img" alt="盒子logo" />
+      </span>
+    </div>
   </div>
 </template>
 
@@ -147,6 +153,41 @@ const addSpecialText = (event) => {
   const skewY = Math.sin((36 * Math.PI) / 180) * 30;
   text.set('skewY', skewY);
   canvasEditor.canvas.renderAll();
+};
+
+const addBoxLogo = (event) => {
+  console.log('🚀 ~ addBoxLogo ~ event:', event);
+  cancelDraw();
+  // 创建图片对象
+  fabric.Image.fromURL('/src/assets/icon/box-logo.png', (img) => {
+    // 使用缩放来控制图片大小，避免裁剪
+    const targetWidth = 180;
+    const targetHeight = 290;
+
+    // 计算缩放比例
+    const scaleX = targetWidth / img.width;
+    const scaleY = targetHeight / img.height;
+
+    // 设置图片属性
+    img.set({
+      ...defaultPosition,
+      left: 1081.57,
+      top: 1096.77,
+      scaleX: scaleX,
+      scaleY: scaleY,
+      clipPath: null, // 确保没有裁剪路径
+      objectCaching: false, // 禁用对象缓存，避免裁剪
+    });
+
+    // 添加到画布
+    canvasEditor.addBaseType(img, { center: false, event });
+
+    // 设置3D旋转效果
+    img.set('angleY', 212);
+    const skewY = Math.sin((212 * Math.PI) / 180) * 30;
+    img.set('skewY', skewY);
+    canvasEditor.canvas.renderAll();
+  });
 };
 
 const addTextBox = (event) => {

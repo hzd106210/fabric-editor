@@ -89,13 +89,13 @@ const switchAttrBar = () => {
         <!-- 替换图片 -->
         <replaceImg></replaceImg>
         <!-- 替换右折页图片 -->
-        <replaceRightFoldImage></replaceRightFoldImage>
+        <!-- <replaceRightFoldImage></replaceRightFoldImage> -->
         <!-- 替换左折页图片 -->
-        <replaceLeftFoldImage></replaceLeftFoldImage>
+        <!-- <replaceLeftFoldImage></replaceLeftFoldImage> -->
         <!-- 替换右盒面图片 -->
-        <replaceRightBoxImage></replaceRightBoxImage>
+        <!-- <replaceRightBoxImage></replaceRightBoxImage> -->
         <!-- 替换左盒面图片 -->
-        <replaceLeftBoxImage></replaceLeftBoxImage>
+        <!-- <replaceLeftBoxImage></replaceLeftBoxImage> -->
         <!-- 裁剪 -->
         <cropperImg></cropperImg>
         <!-- 图片裁切 -->
