@@ -14,6 +14,7 @@ import setSize from '@/components/setSize.vue';
 import replaceImg from '@/components/replaceImg.vue';
 import replaceRightFoldImage from '@/components/replaceRightFoldImage.vue';
 import replaceLeftFoldImage from '@/components/replaceLeftFoldImage.vue';
+import replaceRightBoxImage from '@/components/replaceRightBoxImage.vue';
 import filters from '@/components/filters.vue';
 import imgStroke from '@/components/imgStroke.vue';
 // import elementData from '@/components/elementData.vue';
@@ -90,6 +91,8 @@ const switchAttrBar = () => {
         <replaceRightFoldImage></replaceRightFoldImage>
         <!-- 替换左折页图片 -->
         <replaceLeftFoldImage></replaceLeftFoldImage>
+        <!-- 替换右盒面图片 -->
+        <replaceRightBoxImage></replaceRightBoxImage>
         <!-- 裁剪 -->
         <cropperImg></cropperImg>
         <!-- 图片裁切 -->
