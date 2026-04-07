@@ -32,7 +32,7 @@
       <!-- <waterMark /> -->
       <save></save>
       <!-- <login></login> -->
-      <lang></lang>
+      <!-- <lang></lang> -->
     </div>
   </Header>
 </template>
@@ -45,7 +45,7 @@ import importJson from '@/components/importJSON.vue';
 
 // 顶部组件
 // import logo from '@/components/logo.vue';
-import lang from '@/components/lang.vue';
+// import lang from '@/components/lang.vue';
 import myTemplName from '@/components/myTemplName.vue';
 import previewCurrent from '@/components/previewCurrent';
 import save from '@/components/save.vue';
