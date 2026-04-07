@@ -27,6 +27,22 @@
           ></InputNumber>
         </Col>
       </Row>
+      <Row :gutter="10">
+        <Col flex="1">
+          <InputNumber
+            v-model="baseAttr.width"
+            @on-change="(value) => changeCommon('width', value)"
+            append="宽度"
+          ></InputNumber>
+        </Col>
+        <Col flex="1">
+          <InputNumber
+            v-model="baseAttr.height"
+            @on-change="(value) => changeCommon('height', value)"
+            append="高度"
+          ></InputNumber>
+        </Col>
+      </Row>
       <Form :label-width="40" class="form-wrap">
         <FormItem :label="$t('attributes.angle')">
           <Slider
@@ -99,6 +115,8 @@ const getObjectAttr = (e) => {
     baseAttr.top = activeObject.get('top');
     baseAttr.angle = activeObject.get('angle') || 0;
     baseAttr.angleY = activeObject.get('angleY') || 0;
+    baseAttr.width = activeObject.get('width') || 0;
+    baseAttr.height = activeObject.get('height') || 0;
   }
 };
 
