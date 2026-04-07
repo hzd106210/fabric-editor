@@ -115,8 +115,14 @@ const getObjectAttr = (e) => {
     baseAttr.top = activeObject.get('top');
     baseAttr.angle = activeObject.get('angle') || 0;
     baseAttr.angleY = activeObject.get('angleY') || 0;
-    baseAttr.width = activeObject.get('width') || 0;
-    baseAttr.height = activeObject.get('height') || 0;
+    // 对于图片，显示真实尺寸
+    if (activeObject.type === 'image' && activeObject._element) {
+      baseAttr.width = activeObject._element.naturalWidth || activeObject.get('width') || 0;
+      baseAttr.height = activeObject._element.naturalHeight || activeObject.get('height') || 0;
+    } else {
+      baseAttr.width = activeObject.get('width') || 0;
+      baseAttr.height = activeObject.get('height') || 0;
+    }
   }
 };
 

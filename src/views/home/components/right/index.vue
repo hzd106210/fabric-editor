@@ -12,6 +12,7 @@ import dele from '@/components/del.vue';
 import bgBar from '@/components/bgBar.vue';
 import setSize from '@/components/setSize.vue';
 import replaceImg from '@/components/replaceImg.vue';
+import replaceRightFoldImage from '@/components/replaceRightFoldImage.vue';
 import filters from '@/components/filters.vue';
 import imgStroke from '@/components/imgStroke.vue';
 // import elementData from '@/components/elementData.vue';
@@ -84,6 +85,8 @@ const switchAttrBar = () => {
         <center-align></center-align>
         <!-- 替换图片 -->
         <replaceImg></replaceImg>
+        <!-- 替换右折页图片 -->
+        <replaceRightFoldImage></replaceRightFoldImage>
         <!-- 裁剪 -->
         <cropperImg></cropperImg>
         <!-- 图片裁切 -->
